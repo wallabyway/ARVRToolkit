@@ -6,7 +6,7 @@
 <a href="https://www.npmjs.com/package/boardgame.io"><img src="https://badge.fury.io/js/boardgame.io.svg" alt="npm version" /></a>
 <a href="https://travis-ci.org/google/boardgame.io"><img src="https://img.shields.io/travis/google/boardgame.io/master.svg" alt="Travis" /></a>
 <a href="https://coveralls.io/github/google/boardgame.io?branch=master"><img src="https://img.shields.io/coveralls/google/boardgame.io.svg" alt="Coveralls" /></a>
-<a href="https://gitter.im/boardgame-io"><img src="https://badges.gitter.im/boardgame-io.svg" alt="Gitter" /></a>
+<a href="https://gitter.im/boardgame-io"><img src="https://badges.gitter.im/forgetoolkit.svg" alt="Gitter" /></a>
 </p>
 
 ---
@@ -14,8 +14,7 @@ The Forge Services now support Unity!
 
 Use the new "Forge AR|VR Toolkit" to help you connect into BIM/Revit/Fusion data-streams directly inside Unity.
 
-<iframe src="https://player.vimeo.com/video/252970375?autoplay=1&loop=1&autopause=0" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
+![ForgeToolkit Overview](artoolkit.gif)
 
 ---
 Now that you have live rich BIM data, use Unity to build-out more advanced AR+VR experiences for devices like Hololens, Apple's ARKit, Vive, Oculus, DayDream and GearVR. Here's an intro to getting started:
