@@ -36,20 +36,20 @@ In all of these calls, you must set the Authorization header to a valid OAuth to
 
 Note also that when you call the following endpoints, you **must** convert the urn value into a **URL-safe Base64 encoding**. If you've already used the model derivative API, you should be familiar with how to generate this already. The scene_id value should also be URL-encoded, but does not need to be Base64.
 
-<p>1. Create a new scene definition for your data. 
-
-For 2-legged authentication, call the PUT /arkit/v1/{urn}/scenes/{scene_id} endpoint.
-
-For 3-legged authentication, call the PUT /data/v1/projects/{project_id}/versions/{version_id}/scenes/{scene_id} endpoint.
+1. Create a new scene definition for your data.  
+For 2-legged authentication, call the PUT /arkit/v1/{urn}/scenes/{scene_id} endpoint.  
+For 3-legged authentication, call the PUT /data/v1/projects/{project_id}/versions/{version_id}/scenes/{scene_id} endpoint.  
 
 - **urn**: The objectId of the data file you want to use, as given to you by the Forge data management service.
 - **scene_id**:  A descriptive name for your scene that you can decide for yourself.
 - project_id: and version_id For 3-legged authentication to user data files, you will need these ID values. They are also given to you by the Forge data management service.
 
-You need to send to this endpoint a JSON payload that contains a prj object with the following fields:
+You need to send to this endpoint a JSON payload that contains a prj object with the following fields:  
+
 - **bucketKey**: The bucket key of your data file in the Forge data management API.
 - **objectId**:  The plain-text URN or objectId of your file in the Forge data management API.
 - **urn**: the URL-safe Base64-encoded version of the objectId string above, exactly as it appears in the endpoint URL.
+
 
 For example:
 ```
@@ -68,8 +68,8 @@ response=$(curl -X PUT \
   -d "${payload}" \
   -k -s)
   ```
-  </p>
-<p>2. With the scene definition in place, you can start a scene processing job. This tells the developer-api.autodesk.io server to get the SVF data prepared by the model derivative service, and to process its viewable data into scene assets.
+  
+2. With the scene definition in place, you can start a scene processing job. This tells the developer-api.autodesk.io server to get the SVF data prepared by the model derivative service, and to process its viewable data into scene assets.
 
 Call the **POST /modelderivative/v2/arkit/job** endpoint.
 
@@ -97,9 +97,9 @@ response=$(curl -X POST \
   -d "${payload}" \
   -k -s)
   ```
-  </p>
+ 
 
-<p>3. The developer-api.autodesk.io server starts its scene processing job in response to your request, and continues processing asynchronously. To know when the processing is done and your scene assets are ready to use, you'll need to try to retrieve a manifest. If you're familiar with the Forge model derivative API, you'll recognize this pattern.
+3. The developer-api.autodesk.io server starts its scene processing job in response to your request, and continues processing asynchronously. To know when the processing is done and your scene assets are ready to use, you'll need to try to retrieve a manifest. If you're familiar with the Forge model derivative API, you'll recognize this pattern.
 
 Call the **GET /modelderivative/v2/arkit/{urn}/manifest** endpoint.
 
@@ -119,7 +119,7 @@ while [ "${progress}" != "complete" ]; do
     echo "Request: ${status} (${progress})"
 done
 ```
-</p>
+
 For details on all the endpoints provided by the developer-api.autodesk.io server, see:
 
 [https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.0.0](https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.0.0)
