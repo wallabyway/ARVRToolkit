@@ -69,11 +69,10 @@ response=$(curl -X PUT \
   -k -s)
   ```
   
-2. With the scene definition in place, you can start a scene processing job. This tells the developer-api.autodesk.io server to get the SVF data prepared by the model derivative service, and to process its viewable data into scene assets.
+2. With the scene definition in place, you can start a scene processing job. This tells the developer-api.autodesk.io server to get the SVF data prepared by the model derivative service, and to process its viewable data into scene assets.  
+Call the **POST /modelderivative/v2/arkit/job** endpoint.  
+You will need to send it a JSON payload that contains both the URL-safe Base64-encoded URN and the scene ID you set up above.
 
-Call the **POST /modelderivative/v2/arkit/job** endpoint.
-
-You will need to send it a JSON payload that contains both the URL-safe Base64-encoded URN and the scene ID you set up above. 
 For example:
 ```
 payload=" \
@@ -99,11 +98,10 @@ response=$(curl -X POST \
   ```
  
 
-3. The developer-api.autodesk.io server starts its scene processing job in response to your request, and continues processing asynchronously. To know when the processing is done and your scene assets are ready to use, you'll need to try to retrieve a manifest. If you're familiar with the Forge model derivative API, you'll recognize this pattern.
+3. The developer-api.autodesk.io server starts its scene processing job in response to your request, and continues processing asynchronously. To know when the processing is done and your scene assets are ready to use, you'll need to try to retrieve a manifest. If you're familiar with the Forge model derivative API,you'll recognize this pattern.  
+Call the **GET /modelderivative/v2/arkit/{urn}/manifest** endpoint.  
+This call returns a JSON object that contains a derivatives array. When all of the objects in this array have their progress field set to complete, the job is done and the scene is ready to be loaded by Unity.  
 
-Call the **GET /modelderivative/v2/arkit/{urn}/manifest** endpoint.
-
-This call returns a JSON object that contains a derivatives array. When all of the objects in this array have their progress field set to complete, the job is done and the scene is ready to be loaded by Unity.
 For example:
 ```
 progress="pending"
@@ -137,16 +135,15 @@ In the Unity editor, you should see some new folders listed in your **Project** 
 
 ## Step 4. Set up the Unity scene
 
-<p>1. Create a new, empty GameObject in your scene.  
+1. Create a new, empty GameObject in your scene.  
 
 Select GameObject > Create Empty from the main menu. Make sure your new GameObject is selected in the Hierarchy panel.
-</p>
-<p>2. Add the Forge Loader script component to your GameObject.   
+
+2. Add the Forge Loader script component to your GameObject.   
 
 In the Inspector panel, click Add Component. Select Scripts > Autodesk.Forge.ARKit > Forge Loader.
-</p>
 
-<p>3. In the property list for the Forge Loader component:
+3. In the property list for the Forge Loader component:
 
 - Set the **URN** property to the URL-safe Base64-encoded URN of your model in the Forge data management service.
 - Set the **SCENEID** property to the name of the scene you created on the developer-api.autodesk.com server in step 2 above.
@@ -158,7 +155,7 @@ In the Inspector panel, click Add Component. Select Scripts > Autodesk.Forge.ARK
 <p align="center">
   <img src="res/unity_component_settings.png" alt="Forge ARVR-Toolkit" />
 </p>
-</p>
+
 4. Save your scene.
 
 ## Step 5. Set up Forge authentication for your Unity app
