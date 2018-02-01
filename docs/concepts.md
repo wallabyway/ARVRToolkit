@@ -40,15 +40,15 @@ Note also that when you call the following endpoints, you **must** convert the u
 For 2-legged authentication, call the PUT /arkit/v1/{urn}/scenes/{scene_id} endpoint.  
 For 3-legged authentication, call the PUT /data/v1/projects/{project_id}/versions/{version_id}/scenes/{scene_id} endpoint.  
 
-- **urn**: The objectId of the data file you want to use, as given to you by the Forge data management service.
-- **scene_id**:  A descriptive name for your scene that you can decide for yourself.
-- project_id: and version_id For 3-legged authentication to user data files, you will need these ID values. They are also given to you by the Forge data management service.
+    + **urn**: The objectId of the data file you want to use, as given to you by the Forge data management service.
+    + **scene_id**:  A descriptive name for your scene that you can decide for yourself.
+    + project_id: and version_id For 3-legged authentication to user data files, you will need these ID values. They are also given to you by the Forge data management service.  
+    
+    You need to send to this endpoint a JSON payload that contains a prj object with the following fields:  
 
-You need to send to this endpoint a JSON payload that contains a prj object with the following fields:  
-
-- **bucketKey**: The bucket key of your data file in the Forge data management API.
-- **objectId**:  The plain-text URN or objectId of your file in the Forge data management API.
-- **urn**: the URL-safe Base64-encoded version of the objectId string above, exactly as it appears in the endpoint URL.
+    + **bucketKey**: The bucket key of your data file in the Forge data management API.
+    + **objectId**:  The plain-text URN or objectId of your file in the Forge data management API.
+    + **urn**: the URL-safe Base64-encoded version of the objectId string above, exactly as it appears in the endpoint URL.
 
 
 For example:
@@ -136,21 +136,18 @@ In the Unity editor, you should see some new folders listed in your **Project** 
 ## Step 4. Set up the Unity scene
 
 1. Create a new, empty GameObject in your scene.  
-
 Select GameObject > Create Empty from the main menu. Make sure your new GameObject is selected in the Hierarchy panel.
 
 2. Add the Forge Loader script component to your GameObject.   
-
 In the Inspector panel, click Add Component. Select Scripts > Autodesk.Forge.ARKit > Forge Loader.
 
-3. In the property list for the Forge Loader component:
-
-- Set the **URN** property to the URL-safe Base64-encoded URN of your model in the Forge data management service.
-- Set the **SCENEID** property to the name of the scene you created on the developer-api.autodesk.com server in step 2 above.
-- You'll need to set up the **BEARER** property too. See the next section for details.
-- The **Processed Nodes** and **Processing Nodes Completed** event lists are optional. They allow you to monitor the progress of the loader's download task and respond when its download is complete.
-- The **Processed Nodes** event fires each time the ForgeLoader completes downloading a new item in the scene. It is passed a number between 0 and 1 that indicates what percentage of the download task has been completed so far. In the sample scenes, this event is used to show a UI canvas, and to update the value of a slider.
-- The **Processing Nodes Completed** event fires once, when the download task is done. In the sample scenes, this event is used to hide the UI canvas and the slider when all parts of the model have been downloaded.
+3. In the property list for the Forge Loader component: 
+    - Set the **URN** property to the URL-safe Base64-encoded URN of your model in the Forge data management service.
+    - Set the **SCENEID** property to the name of the scene you created on the developer-api.autodesk.com server in step 2 above.
+    - You'll need to set up the **BEARER** property too. See the next section for details.
+    - The **Processed Nodes** and **Processing Nodes Completed** event lists are optional. They allow you to monitor the progress of the loader's download task and respond when its download is complete.  
+    The **Processed Nodes** event fires each time the ForgeLoader completes downloading a new item in the scene. It is passed a number between 0 and 1 that indicates what percentage of the download task has been completed so far. In the sample scenes, this event is used to show a UI canvas, and to update the value of a slider.  
+    The **Processing Nodes Completed** event fires once, when the download task is done. In the sample scenes, this event is used to hide the UI canvas and the slider when all parts of the model have been downloaded.
 
 <p align="center">
   <img src="res/unity_component_settings.png" alt="Forge ARVR-Toolkit" />
