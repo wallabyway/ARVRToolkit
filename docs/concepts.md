@@ -36,7 +36,7 @@ In all of these calls, you must set the Authorization header to a valid OAuth to
 
 Note also that when you call the following endpoints, you **must** convert the urn value into a **URL-safe Base64 encoding**. If you've already used the model derivative API, you should be familiar with how to generate this already. The scene_id value should also be URL-encoded, but does not need to be Base64.
 
-1. Create a new scene definition for your data.  
+- Create a new scene definition for your data.  
 For 2-legged authentication, call the PUT /arkit/v1/{urn}/scenes/{scene_id} endpoint.  
 For 3-legged authentication, call the PUT /data/v1/projects/{project_id}/versions/{version_id}/scenes/{scene_id} endpoint.  
 
@@ -50,73 +50,72 @@ For 3-legged authentication, call the PUT /data/v1/projects/{project_id}/version
     + **objectId**:  The plain-text URN or objectId of your file in the Forge data management API.
     + **urn**: the URL-safe Base64-encoded version of the objectId string above, exactly as it appears in the endpoint URL.
 
-
-For example:
-```
-payload=" \
-{ \
-    \"prj\": { \
-        \"bucketKey\": \"${bucket}\", \
-        \"objectId\": \"${id}\", \
-        \"urn\": \"${urn}\" \
-    } \
-}"
-response=$(curl -X PUT \
-  -H "Authorization: ${bearer}" \
-  -H "Content-Type: application/json" \
-  "https://developer-api.autodesk.io/arkit/v1/${urn}/scenes/my_scene_id" \
-  -d "${payload}" \
-  -k -s)
-  ```
+    For example:
+    ```
+    payload=" \
+    { \
+        \"prj\": { \
+            \"bucketKey\": \"${bucket}\", \
+            \"objectId\": \"${id}\", \
+            \"urn\": \"${urn}\" \
+        } \
+    }"
+    response=$(curl -X PUT \
+    -H "Authorization: ${bearer}" \
+    -H "Content-Type: application/json" \
+    "https://developer-api.autodesk.io/arkit/v1/${urn}/scenes/my_scene_id" \
+    -d "${payload}" \
+    -k -s)
+    ```
   
-2. With the scene definition in place, you can start a scene processing job. This tells the developer-api.autodesk.io server to get the SVF data prepared by the model derivative service, and to process its viewable data into scene assets.  
+- With the scene definition in place, you can start a scene processing job. This tells the developer-api.autodesk.io server to get the SVF data prepared by the model derivative service, and to process its viewable data into scene assets.  
 Call the **POST /modelderivative/v2/arkit/job** endpoint.  
 You will need to send it a JSON payload that contains both the URL-safe Base64-encoded URN and the scene ID you set up above.
 
-For example:
-```
-payload=" \
-{ \
-    \"input\": { \
-        \"urn\": \"${urn}\" \
-    }, \
-    \"output\": { \
-        \"formats\": [ \
-            { \
-                \"type\": \"arkit\", \
-                \"scene\": \"${scene_id}\" \
-            } \
-        ] \
-    } \
-}"
-response=$(curl -X POST \
-  -H "Authorization: ${bearer}" \
-  -H "Content-Type: application/json" \
-  "https://developer-api.autodesk.io/arkit/v1/modelderivative/v2/arkit/job" \
-  -d "${payload}" \
-  -k -s)
-  ```
+    For example:
+    ```
+    payload=" \
+    { \
+        \"input\": { \
+            \"urn\": \"${urn}\" \
+        }, \
+        \"output\": { \
+            \"formats\": [ \
+                { \
+                    \"type\": \"arkit\", \
+                    \"scene\": \"${scene_id}\" \
+                } \
+            ] \
+        } \
+    }"
+    response=$(curl -X POST \
+    -H "Authorization: ${bearer}" \
+    -H "Content-Type: application/json" \
+    "https://developer-api.autodesk.io/arkit/v1/modelderivative/v2/arkit/job" \
+    -d "${payload}" \
+    -k -s)
+    ```
  
 
-3. The developer-api.autodesk.io server starts its scene processing job in response to your request, and continues processing asynchronously. To know when the processing is done and your scene assets are ready to use, you'll need to try to retrieve a manifest. If you're familiar with the Forge model derivative API,you'll recognize this pattern.  
+- The developer-api.autodesk.io server starts its scene processing job in response to your request, and continues processing asynchronously. To know when the processing is done and your scene assets are ready to use, you'll need to try to retrieve a manifest. If you're familiar with the Forge model derivative API,you'll recognize this pattern.  
 Call the **GET /modelderivative/v2/arkit/{urn}/manifest** endpoint.  
 This call returns a JSON object that contains a derivatives array. When all of the objects in this array have their progress field set to complete, the job is done and the scene is ready to be loaded by Unity.  
 
-For example:
-```
-progress="pending"
-while [ "${progress}" != "complete" ]; do
-    sleep 5
-    response=$(curl -X GET \
-        -H "Authorization: ${bearer}" \
-        -H "Content-Type: application/json" \
-        "https://developer-api.autodesk.io/modelderivative/v2/arkit/${urn}/manifest" \
-        -k -s)
-    status=$(echo $response | jq --raw-output .derivatives[-1].status)
-    progress=$(echo $response | jq --raw-output .derivatives[-1].progress)
-    echo "Request: ${status} (${progress})"
-done
-```
+    For example:
+    ```
+    progress="pending"
+    while [ "${progress}" != "complete" ]; do
+        sleep 5
+        response=$(curl -X GET \
+            -H "Authorization: ${bearer}" \
+            -H "Content-Type: application/json" \
+            "https://developer-api.autodesk.io/modelderivative/v2/arkit/${urn}/manifest" \
+            -k -s)
+        status=$(echo $response | jq --raw-output .derivatives[-1].status)
+        progress=$(echo $response | jq --raw-output .derivatives[-1].progress)
+        echo "Request: ${status} (${progress})"
+    done
+    ```
 
 For details on all the endpoints provided by the developer-api.autodesk.io server, see:
 
@@ -149,9 +148,9 @@ In the Inspector panel, click Add Component. Select Scripts > Autodesk.Forge.ARK
     The **Processed Nodes** event fires each time the ForgeLoader completes downloading a new item in the scene. It is passed a number between 0 and 1 that indicates what percentage of the download task has been completed so far. In the sample scenes, this event is used to show a UI canvas, and to update the value of a slider.  
     The **Processing Nodes Completed** event fires once, when the download task is done. In the sample scenes, this event is used to hide the UI canvas and the slider when all parts of the model have been downloaded.
 
-<p align="center">
-  <img src="res/unity_component_settings.png" alt="Forge ARVR-Toolkit" />
-</p>
+    <p align="center">
+    <img src="res/unity_component_settings.png" alt="Forge ARVR-Toolkit" />
+    </p>
 
 4. Save your scene.
 
@@ -168,7 +167,7 @@ Note that for security reasons we strongly recommend not putting your app ID or 
 - A possible solution could be to read your app ID and secret from a settings file or environment variables. Or, if you're building an AR app, you could embed your credentials in a QR code that you only give out to authorized users, and have your app scan the code before attempting to download the data.
 This part of the Unity app is currently up to you to design and build, as it depends on the kind of experience you're trying to build on top of your data, and whether you need two-legged or three-legged authentication to Forge.
 
-## Step 5. Deploy and test
+## Step 6. Deploy and test
 
 Run your scene in the Unity editor, or build and run your game on your target platform. You should see your Forge model appear in your scene as the viewable parts of the scene are loaded:
 <p align="center">
