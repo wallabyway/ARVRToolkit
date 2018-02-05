@@ -13,7 +13,6 @@
 * API Reference
 
   * [APIs](api/Apis.md)
-  * [Models](api/Models.md)
 
 * Component Library
   * [Showcase](storybook.md)
