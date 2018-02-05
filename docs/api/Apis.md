@@ -2,72 +2,66 @@
 Forge ARKit APIs
 
 
-GET
+## GET health
 /arkit/v1/health
 
-GET
+
+## GET {urn}/scenes
 /arkit/v1/{urn}/scenes
 
 
-PUT
+## PUT {urn}/scenes/{scene_id}
 /arkit/v1/{urn}/scenes/{scene_id}
 
 
-GET
+## GET {urn}/scenes/{scene_id}
 /arkit/v1/{urn}/scenes/{scene_id}
 
 
-DELETE
+## DELETE {urn}/scenes/{scene_id}
 /arkit/v1/{urn}/scenes/{scene_id}
 
 
-PUT
+## PUT {project_id}/versions/{version_id}/scenes/{scene_id}
 /data/v1/projects/{project_id}/versions/{version_id}/scenes/{scene_id}
 
 
-GET
+## GET {project_id}/versions/{version_id}/scenes/{scene_id}
 /data/v1/projects/{project_id}/versions/{version_id}/scenes/{scene_id}
 
 
-DELETE
+## DELETE {project_id}/versions/{version_id}/scenes/{scene_id}
 /data/v1/projects/{project_id}/versions/{version_id}/scenes/{scene_id}
 
 
-POST
+## POST Job
 /modelderivative/v2/arkit/job
 
 
-GET
+## GET {urn}/manifest
 /modelderivative/v2/arkit/{urn}/manifest
 
 
-GET
+## GET {urn}/scenes/{scene_id}
 /modelderivative/v2/arkit/{urn}/scenes/{scene_id}
 
-
-GET
+## GET {urn}/mesh/{dbId}/{fragId}
 /modelderivative/v2/arkit/{urn}/mesh/{dbId}/{fragId}
 
-
-GET
+## GET {urn}/scenes/{scene_id}/mesh/{dbId}/{fragId}
 /modelderivative/v2/arkit/{urn}/scenes/{scene_id}/mesh/{dbId}/{fragId}
 
-
-GET
+## GET {urn}/material/{matId}/{mat}
 /modelderivative/v2/arkit/{urn}/material/{matId}/{mat}
 
-
-GET
+## GET {urn}/texture/{tex}
 /modelderivative/v2/arkit/{urn}/texture/{tex}
 
-
-GET
+## GET {urn}/properties/{dbIds}
 /modelderivative/v2/arkit/{urn}/properties/{dbIds}
 
-
-GET
+## GET {urn}/bubble
 /modelderivative/v2/arkit/{urn}/bubble
 
-
-GET
+## GET {urn}/unity
 /modelderivative/v2/arkit/{urn}/unity
