@@ -4,6 +4,21 @@ Forge ARKit APIs
 
 ## GET health
 /arkit/v1/health
+This endpoint will check if the service is up and running.
+
+**Parameters**
+No parameters
+
+
+**Responses**
+- Response content type: application/json
+
+
+|Code|Description|
+|:---|:---:|
+|200|OK, request successfully completed.|
+|400|BAD REQUEST, The request could not be understood by the server due to malformed syntax or missing request headers. The client SHOULD NOT repeat the request without modifications. The response body may give an indication of what is wrong with the request.|
+|500|INTERNAL SERVER ERROR, Internal failure while processing the request, reason depends on error.|
 
 
 ## GET {urn}/scenes
