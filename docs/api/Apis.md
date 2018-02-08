@@ -2,6 +2,13 @@
 Forge ARKit APIs
 
 
+For details on all the endpoints provided by the  server, see:
+
+[SwaggerHub.com / forge-arkit / v1.0.0](https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.0.0)
+
+___
+
+
 ## GET health
 /arkit/v1/health
 This endpoint will check if the service is up and running.
