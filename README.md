@@ -11,9 +11,9 @@
 
 The primary goal of this toolkit is to load Autodesk content into the Unity platform.  Once you have Autodesk data, such as BIM/AEC or manufacturing content, inside Unity, you can start to build out more complex AR/VR experiences with Hololens, Apple's ARKit, Vive, Oculus, DayDream and GearVR.
 
-More details at: [GitHub-Pages](https://wallabyway.github.io/ARVRToolkit/)
+Website: [ForgeToolkit.com](http://forgetoolkit.com)
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/I5RBVA1Kipk" frameborder="0" allowfullscreen></iframe>
+![ForgeToolkit Overview](docs/artoolkit.gif)
 
 
 
