@@ -4,7 +4,7 @@ The files in this package make a Unity app capable of loading design data from F
 
 To understand how to use these files as part of the Forge to Unity data pipeline, click `Hello World` link in the sidebar.
 
-* Download [Forge-ARKit-20171221-update-2.unitypackage](/unity/Forge-ARKit-20171221-update-2.unitypackage)
+* Download [Forge-ARKit-20171221-update-2.unitypackage](//forgetoolkit.com/unity/Forge-ARKit-20171221-update-2.unitypackage)
 
 ---
 # Update 2 (Dec17)
