@@ -1,112 +1,53 @@
-# v0.16.7
+# Download / Change Log
 
-#### Bugfixes
+The files in this package make a Unity app capable of loading design data from Forge.
 
-* [c65580d] Fix bug introduced in af3a7b5.
+To understand how to use these files as part of the Forge to Unity data pipeline, click `Hello World` link in the sidebar.
 
-# v0.16.6
+* Download [Forge-ARKit-20171221-update-2.unitypackage](../unity/Forge-ARKit-20171221-update-2.unitypackage)
 
-#### Bugfixes
+---
+# Update 2 (Dec17)
 
-* [af3a7b5] Only process move reducers (on the client) and nothing else when in multiplayer mode.
+#### Bugfix
+- (server) `503 error` fix after the outage which happened on Dec 6th
+- (server) Reduced instanceTree was not processed properly for non graphical nodes
+- (Unity) Loading material error on Daqri and iOS system; theses systems needs shaders to be included in their respective builds
+(GraphicsSettings: Always Include "Standard” and “Standard (Specular setup)” shaders)
+(Include shaders with material in the Resources folder, and/or include object with material references into the scene)
+- (scripts) base64 bash command `implicit -w0` argument on MacOS
+- (Unity) temporary remove qrcode and camera code from the plugin - this cause problems on UWP platforms
+- (Unity) Default values were not set for textures unless specified in the material definition
+- (Unity) Metadata (Properties) are requested for each transform nodes vs mesh
+- (Unity) Transform nodes are renamed with their "name" Property in the Unity Hierarchy tree
+- (Unity) Empty resources are now ignored (not requested)
+- (Unity) `LoaderEngine::Load` method is now protected
 
-Buggy fix (fixed in 0.16.7).
+#### Enhancement:
+- Enhancement: (Unity) Properties requests are deferred in the loading order
+- Enhancement: (Unity) Loading Properties & Meshes are now optional
+- Enhancement: (Server/Unity) Client can now request compressed resources
 
-#### Features
+#### New:
+- New: (scripts) Added a `test-prep-scene` which takes a single URN as parameter to post and process an ARKit scene
+- New: (scripts) Support for Windows platform (requires bash and jq)
+- New: (scripts) Instructions to install/use scripts on all platforms (Linux, Windows, and MacOS)
 
-* [2721ad4] Allow overriding `db` implementation in Server.
+---
+# Update 1 (Nov17)
 
-# v0.16.5
+#### New:
+- The project assets are now packaged as a .unityproject bundle, which you can install by choosing `Assets > Import Package > Custom Package` from the main menu of the Unity editor.
+- The project assets now include sample scenes that illustrate different ways of setting up the ForgeLoader script component. You can find them under `Assets > Forge` Samples.
+For details on these sample scenes, see the Get started with the Forge to Unity data pipeline page.
+- The ForgeLoader script component has a new `UnityEvent` that reports the completion percentage of its current download task, and that fires an event when the model is fully downloaded. You can use these triggers to drive a UI element such as a progress bar. (For an example, see the new `sample scenes`.)
+- You can now import Forge assets into the Unity editor and save them to prefabs, instead of having your app download them at runtime. Select `Forge > Import Scene` in the main menu of the Unity editor.
 
-#### Features
+#### Bug fixes:
+- Redefines the upVector based on metadata - the previous version always assumed a Z up vector, whereas Unity uses Y.
+- Malformed mesh UVs were causing issues in the Unity engine.
+- An HTTP error on getting the `instanceTree` could cause multiple scene objects to be created.
+- WSA support was missing `#using` directives.
+- Malformed Metadata (`ForgeProperties`) were not displayed properly in the Unity Editor.
 
-* `PlayerView.STRIP_SECRETS`
 
-# v0.16.4
-
-#### Bugfixes
-
-* `endPhaseIf` is called after each move (in addition to at the end of a turn).
-* `gameID` is namespaced on the server so that there are no clashes across game types.
-
-#### Breaking Changes
-
-* `props.game` is now `props.events` (to avoid confusing it with the `game` object).
-
-```
-// OLD
-onClick() {
-  this.props.game.endTurn();
-}
-
-// NEW
-onClick() {
-  this.props.events.endTurn();
-}
-```
-
-# v0.16.3
-
-#### Features
-
-* Multiple game types per server!
-
-#### Breaking Changes
-
-* `Server` now accepts an array `games`, and no longer takes `game` and `numPlayers`.
-
-```
-const app = Server({
-  games: [ TicTacToe, Chess ]
-};
-```
-
-# v0.16.2
-
-#### Bugfixes
-
-* [[a61ceca](https://github.com/google/boardgame.io/commit/a61ceca8cc8e973d786678e1bcc7ec50739ebeaa)]: Log turn ends correctly (even when triggered automatically by `endTurnIf`)
-
-#### Features
-
-* [[9ce42b2](https://github.com/google/boardgame.io/commit/9ce42b297372160f3ece4203b4c92000334d85e0)]: Change color in `GameLog` based on the player that made the move.
-
-# v0.16.1
-
-#### Bugfixes
-
-* [[23d9726](https://github.com/google/boardgame.io/commit/23d972677c6ff43b77d5c30352dd9959b517a93c)]: Fix bug that was causing `log` to be erased after `flow.processMove`.
-
-#### Features
-
-* [Triggers](https://github.com/google/boardgame.io/commit/774e540b20d7402184a00abdb7c512d7c8e85995)
-* [movesPerTurn](https://github.com/google/boardgame.io/commit/73d5b73d00eaba9aaf73a3576dfcfb25fc2b311d)
-
-# v0.16.0
-
-#### Features
-
-* [Phases](http://boardgame.io/#/phases)
-
-#### Breaking Changes
-
-* `boardgame.io/game` is now `boardgame.io/core`, and does not have a default export.
-* `boardgame.io/client` no longer has a default export.
-
-```
-// v0.16
-import { Game } from 'boardgame.io/core'
-import { Client } from 'boardgame.io/client'
-```
-
-```
-// v0.15
-import Game from 'boardgame.io/game'
-import Client from 'boardgame.io/client'
-```
-
-* `victory` is now `endGameIf`, and goes inside a `flow` section.
-* The semantics of `endGameIf` are subtly different. The game ends if
-  the function returns anything at all.
-* `ctx.winner` is now `ctx.gameover`, and contains the return value of `endGameIf`.
-* `props.endTurn` is now `props.game.endTurn`.

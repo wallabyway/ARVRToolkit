@@ -10,9 +10,7 @@
 </p>
 
 ---
-The Forge Services now support Unity via a (beta) Toolkit!
-
-(This is still in beta)
+The Forge Services now support Unity ! (in beta)
 
 Use the new "Forge AR|VR Toolkit" to help you connect into BIM/Revit/Fusion data-streams directly inside Unity.
 
@@ -40,21 +38,7 @@ This is the tradional manual data pipeline.  The Forge Toolkit is designed to re
 
 ### Installation
 
-1. Download the 'hello world' Unity Project
-2. open the project in Unity
-3. In a browser, go to 'http://vrock.it' and click on the 'house sample'
-4. you will see a box with 3 text fields: UUID, Key and Secret.  Copy these down.
-5. In Unity, select 'startup Script', and you will see the empty fields UUID, Key and Secret
-6. Copy over UUID, Key and Secret into the fields
-5. Now press the Unity 'play' button
-
-You can find the original source code for the Unity project until the 'hello world' folder in this github repo.
-
-
-### Changelog
-
-See [changelog](CHANGELOG.md).
-
+See the 'Hello World' Guide on the left.
 
 ### Disclaimer
 

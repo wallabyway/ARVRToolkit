@@ -1,81 +1,23 @@
 # Hello World
 
-All you need to do is add `multiplayer: true` to your client
-config object and you have a multiplayer enabled client. You
-can open multiple browser tabs and you will find that the
-game board is synced in realtime across all of them
-(without browser refreshes) as you make moves!
+#### Installation
 
-```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Client from 'boardgame.io/client';
+1. [Download the 'hello world'](CHANGELOG.md) Unity Project
+2. open the project in Unity
+3. In a browser, go to [ToolkitService](https://forge-rcdb.autodesk.io/configurator?id=5a2a07e6d72f007fb27b7e0c), login and click on the 'house.rvt'
+4. create a new Scene called '`helloworld-house`', this is the SceneId
+5. Copy the `Urn` and `token` under manifest and token tabs
+6. In Unity, select '`startup Script`', and paste in `URN`, `BEARER` (token) and `SCENEID`
+    <p align="center">
+    <img src="res/unity_component_settings.png" alt="Forge ARVR-Toolkit" />
+    </p>
+7. Now press the Unity '`play`' button
 
-const App = Client({
-  game: TicTacToe,
-  board: TicTacToeBoard,
-  multiplayer: true,
-});
+You should now see the following:
 
-ReactDOM.render(<App />, document.getElementById('root'));
-```
+<p align="center">
+  <img src="res/unity_game.gif" alt="Forge ARVR-Toolkit" />
+</p>
 
-Whenever you make a move, the framework sends an update to the
-server via a WebSocket, and the server updates its version of
-the game while also broadcasting the update to all connected
-clients.
+You can find the original source code for the Unity project until the 'hello world' folder in this github repo.
 
-For this to work, the server needs to know what game you
-are playing. Here is a snippet showing how to set it up
-to serve the socket requests coming from the client.
-
-```js
-const Server = require('boardgame.io/server');
-const TicTacToe = require('./tic-tac-toe');
-const app = Server({ games: [TicTacToe] });
-app.listen(8000);
-```
-
-You can also serve multiple types of games from the same server:
-
-```js
-const app = Server({ games: [TicTacToe, Chess] });
-```
-
-For this to work correctly, make sure that each game
-implementation specifies a name in the `Game` constructor:
-
-```js
-const TicTacToe = Game({
-  name: 'tic-tac-toe',
-  ...
-})
-```
-
-In a real app, you might want to also serve your React
-frontend from the same server as well. The returned object
-`app` is a [Koa](http://koajs.com/) app that you can
-use to attach other handlers etc.
-
-```js
-const KoaStatic = require('koa-static');
-const Server = require('boardgame.io/server');
-const TicTacToe = require('./tic-tac-toe');
-
-const app = Server({ games: [TicTacToe] });
-app.use(KoaStatic('path/to/dir'));
-app.listen(8000);
-```
-
-By default, all client instances are synced to a game with
-an ID `'default'`. To play a new game instance, just pass
-`gameID` to your client `<App/>`. All clients that use
-this ID will now see the same board (synced in realtime).
-
-```
-ReactDOM.render(<App gameID="gameid" />, document.getElementById('root'));
-```
-
-The `gameID` could be determined by a URL path, for example,
-so you could have all browsers that connect to a certain
-URL be synced to the same game.

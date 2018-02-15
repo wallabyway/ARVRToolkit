@@ -2,12 +2,13 @@
 
   * [Overview](/)
   * [Tutorial](tutorial.md)
+  * [Download](CHANGELOG.md)
 
 * Guides
 
   * [Hello World](helloworld.md)
-  * [Query building HVAC](queryString.md)
-  * [Query box Volume](queryBox.md)
+  * [Filter by String](queryString.md)
+  * [Spatial Filter](queryBox.md)
 
 * API Reference
 
