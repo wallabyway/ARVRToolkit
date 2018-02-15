@@ -1,4 +1,4 @@
-# Phases
+# Query Building HVAC
 
 A round-robin turn order where each player makes
 a number of moves before hitting `endTurn` might suffice

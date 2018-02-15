@@ -1,18 +1,17 @@
 * Getting Started
 
   * [Overview](/)
-  * [Concepts](concepts.md)
   * [Tutorial](tutorial.md)
 
 * Guides
 
-  * [Multiplayer](multiplayer.md)
-  * [Phases](phases.md)
-  * [Secret State](secret-state.md)
+  * [Hello World](helloworld.md)
+  * [Query building HVAC](queryString.md)
+  * [Query box Volume](queryBox.md)
 
 * API Reference
 
   * [APIs](api/Apis.md)
 
 * Component Library
-  * [Showcase](storybook.md)
+  * [Showcase](showcase.md)

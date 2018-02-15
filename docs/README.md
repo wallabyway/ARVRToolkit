@@ -10,7 +10,9 @@
 </p>
 
 ---
-The Forge Services now support Unity!
+The Forge Services now support Unity via a (beta) Toolkit!
+
+(This is still in beta)
 
 Use the new "Forge AR|VR Toolkit" to help you connect into BIM/Revit/Fusion data-streams directly inside Unity.
 

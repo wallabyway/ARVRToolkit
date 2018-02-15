@@ -1,4 +1,4 @@
-# Multiplayer
+# Hello World
 
 All you need to do is add `multiplayer: true` to your client
 config object and you have a multiplayer enabled client. You

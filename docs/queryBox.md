@@ -1,4 +1,4 @@
-# Secret State
+# Query Box Volume
 
 In some games, you might need to hide information from
 players. For example, you might not want to reveal the
