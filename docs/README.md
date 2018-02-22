@@ -12,12 +12,12 @@
 ---
 The Forge Services now support Unity ! (in beta)
 
-Use the new "Forge AR|VR Toolkit" to help you connect into BIM/Revit/Fusion data-streams directly inside Unity.
+Use the new "Forge AR|VR Toolkit" to help you connect into BIM/Navisworks/Revit/Solidworks data-streams directly inside Unity.
 
 ![ForgeToolkit Overview](artoolkit.gif)
 
 ---
-Now that you have live rich BIM data, use Unity to build-out more advanced AR+VR experiences for devices like Hololens, Apple's ARKit, Vive, Oculus, DayDream and GearVR. Here's an intro to getting started:
+Now that you have live rich CAD data, use Unity to build-out more advanced AR+VR experiences for devices like Hololens, Apple's ARKit, Vive, Oculus, DayDream and GearVR. Here's an intro to getting started:
 
 <iframe width="640" height="480" src="https://www.youtube.com/embed/I5RBVA1Kipk" frameborder="0" allowfullscreen></iframe>
 
