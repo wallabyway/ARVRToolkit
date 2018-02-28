@@ -3,11 +3,14 @@
 #### Installation
 
 1. [Download the 'hello world'](CHANGELOG.md) Unity Project
-2. open the project in Unity
-3. In a browser, go to [ToolkitService](https://forge-rcdb.autodesk.io/configurator?id=5a2a07e6d72f007fb27b7e0c), login and click on the 'house.rvt'
-4. create a new Scene called '`helloworld-house`', this is the SceneId
-5. Copy the `Urn` and `token` under manifest and token tabs
-6. In Unity, select '`startup Script`', and paste in `URN`, `BEARER` (token) and `SCENEID`
+2. open the sample project in Unity at Assets/Forge Samples/LoadAtStartup
+3. In a browser, go to [ToolkitService](https://forge-rcdb.autodesk.io/configurator?id=5a2a07e6d72f007fb27b7e0c), login with your Autodesk ID and select an item of design file, for example, 'House Design.rvt'
+4. Click 'VR' button, and then create a new Scene called '`helloworld-house`', this is the SceneId
+    <p align="center">
+    <img src="res/createScene.png" alt="Forge ARVR-Toolkit" />
+    </p>
+5. Copy the `Urn` and `token` under "Manifest" and Token tabs
+6. In Unity, select '`startup Script`' and go to Inspector window, paste in `URN`, `BEARER` (token) and `SCENEID`
     <p align="center">
     <img src="res/unity_component_settings.png" alt="Forge ARVR-Toolkit" />
     </p>
