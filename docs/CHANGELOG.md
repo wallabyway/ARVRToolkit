@@ -5,7 +5,8 @@ The files in this package make a Unity app capable of loading design data from F
 To understand how to use these files as part of the Forge to Unity data pipeline, click `Hello World` link in the sidebar.
 
 * Download [ForgeARKit-update-3-2017.3.1f1.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-3-2017.3.1f1.unitypackage)
-* or [ForgeARKit-update-3-2017.1.2f1.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-3-2017.1.2f1.unitypackage) for MRLabs support
+* or [ForgeARKit-update-3-2017.1.2f1.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-3-2017.1.2f1.unitypackage) for
+  [MRLabs](https://github.com/Microsoft/MRDesignLabs_Unity) support
 
 ---
 # Update 3 (Mar18)
@@ -13,7 +14,7 @@ To understand how to use these files as part of the Forge to Unity data pipeline
 #### Bugfix
 - (server) Reintroducing qrcode and camera code into the plugin - this was causing problems on UWP platforms
 - (server) Rewrote the multipleScenes example
-- (Unity) Fix the Loader dialog crash on Unity 2017.3.x (was randomly crashing on previous verisons)
+- (Unity) Fix the Loader dialog crash on Unity 2017.3.x (was randomly crashing on previous versions)
 
 #### Enhancement:
 - Enhancement: Update the SimpleJSON library to the lastest version
