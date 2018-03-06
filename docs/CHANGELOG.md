@@ -7,6 +7,21 @@ To understand how to use these files as part of the Forge to Unity data pipeline
 * Download [Forge-ARKit-update-1.unitypackage](http://forgetoolkit.com/unity/Forge-ARKit-update-1.unitypackage)
 
 ---
+# Update 3 (Mar18)
+
+#### Bugfix
+- (server) Reintroducing qrcode and camera code into the plugin - this was causing problems on UWP platforms
+- (server) Rewrote the multipleScenes example
+- (Unity) Fix the Loader dialog crash on Unity 2017.3.x (was randomly crashing on previous verisons)
+
+#### Enhancement:
+- Enhancement: Update the SimpleJSON library to the lastest version
+- Enhancement: Introduced various Oauth2 classes to handle Authorization
+- Enhancement: Introduced a Metadata Forge Inespector class to display properties in panels
+- Enhancement: Adding Colliders when instantiating meshes
+- Enhancement: Make the code fully compatible with WSA/UWP standards
+
+---
 # Update 2 (Dec17)
 
 #### Bugfix
