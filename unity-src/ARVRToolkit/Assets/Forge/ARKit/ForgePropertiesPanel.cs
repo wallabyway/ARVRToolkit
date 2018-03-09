@@ -75,6 +75,11 @@ namespace Autodesk.Forge.ARKit {
 
 		public void LoadProperties (ForgeProperties props, Vector3 position, Vector3 normal) {
 			JSONNode json =props.Properties ;
+			if ( json == null ) {
+				//json =JSON.Parse (props.PropertiesString) ;
+				props.OnAfterDeserialize () ;
+				json =props.Properties ;
+			}
 			LoadProperties (json, position, normal) ;
 		}
 
@@ -86,6 +91,10 @@ namespace Autodesk.Forge.ARKit {
 			gameObject.transform.localPosition =position ;
 			normal.y =0f ;
 			gameObject.transform.rotation =Quaternion.LookRotation (-normal) ;
+			if ( j == null ) {
+				_title.GetComponent<Text> ().text ="No properties" ;
+				return ;
+			}
 
 			// Sort properties per category
 			Dictionary<string, List<JSONNode>> properties =new Dictionary<string, List<JSONNode>> () ;
