@@ -9,8 +9,8 @@ This sample is a simple HoloLens demo using [MRLabs](https://github.com/Microsof
 
 1. Create a new Unity project. You need [Unity 2017.1.3](https://unity3d.com/get-unity/download/archive).
 2. Import the Forge Toolkit package (Note you need the version for [Unity 2017.1.3](https://unity3d.com/get-unity/download/archive) which is the version supported by MRLabs)
-3. Import the [MRLabs package](http://forgetoolkit.com/unity/MRLabs.unitypackage)
-4. Import the [HoloLens RCDB sample code](http://forgetoolkit.com/unity/rcdb-Example.unitypackage)
+3. Import the [MRLabs package](https://github.com/wallabyway/ARVRToolkit/blob/master/unity-src/extra-samples/rcdb-HoloLens/MRLabs.unitypackage?raw=true)
+4. Import the [HoloLens RCDB sample code](https://github.com/wallabyway/ARVRToolkit/blob/master/unity-src/extra-samples/rcdb-HoloLens/rcdb-Example.unitypackage?raw=true)
 5. Load the 'Assets/Forge Samples/Hololens-RCDB' scene in the editor
 6. In the Player options, add the FORGE_HUX preprocessor symbol
 
