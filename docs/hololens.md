@@ -7,8 +7,8 @@ This sample is a simple HoloLens demo using [MRLabs](https://github.com/Microsof
 
 ### Setup
 
-1. Create a new Unity project. You need Unity 2017.1.2f1.
-2. Import the Forge Toolkit package (Note you need the version for Unity 2017.1.2f1 which is the version supported by MRLabs)
+1. Create a new Unity project. You need [Unity 2017.1.3](https://unity3d.com/get-unity/download/archive).
+2. Import the Forge Toolkit package (Note you need the version for [Unity 2017.1.3](https://unity3d.com/get-unity/download/archive) which is the version supported by MRLabs)
 3. Import the [MRLabs package](MRLabs.unitypackage)
 4. Import the [HoloLens RCDB sample code](rcdb-Example.unitypackage)
 5. Load the 'Assets/Forge Samples/Hololens-RCDB' scene in the editor
@@ -34,13 +34,13 @@ After having compiled and deployed the sample on your HoloLens, got to the [Forg
 * Combine: Restores the model in its orginal state after 'Explode'
 * Reset: Resets the scene
 
-## License
+#### License
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). 
 Please see the [LICENSE](LICENSE) file for full details.
 
 
-## Written by
+#### Written by
 
 Cyrille Fauvel <br />
 Forge Partner Development <br />
