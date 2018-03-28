@@ -1,5 +1,6 @@
 # Tutorial
 
+
 ## Before you start
 
 - Register as a Forge developer, if you’re not already! You’ll need to have a good understanding of how to authenticate, and how to use the data management and model derivative APIs.
@@ -7,7 +8,10 @@
 - Download the code example that demonstrates how to prepare your Unity scene. You can find this in the **Downloads** area to the left of this page: click **Unity scene preparation sample code**, and download the **test-2legged** file. This bash script shows a minimal sequence of calls to the Forge and developer-api.autodesk.io REST APIs that will get you through Step 1 and Step 2 below.
 - If you have problems using the steps on this page to get up and running, please let us know in the User Forums on this site!
 
+
 ## Step 1. Use Forge to prepare an SVF
+
+<a href="https://www.youtube.com/embed/I5RBVA1Kipk"><img src="youtubeSetup.jpg"></a>
 
 The Forge AR|VR Toolkit needs your design data to be available in the SVF format produced by the model derivative service. So, in order to get started with this toolkit, you will need to write an app or script that uses the Forge APIs to generate this version of your data. You'll need to:
 
