@@ -2,7 +2,7 @@
 
 #### Installation
 
-1. [Download the 'hello world'](CHANGELOG.md) Unity Project
+1. [Download the 'hello world'](CHANGELOG.md) Unity Package
 2. open the sample project in Unity at Assets/Forge Samples/LoadAtStartup
 3. In a browser, go to [ToolkitService](https://forge-rcdb.autodesk.io/configurator?id=5a2a07e6d72f007fb27b7e0c), login with your Autodesk ID and select an item of design file, for example, 'House Design.rvt'
 4. Click 'VR' button, and then create a new Scene called '`helloworld-house`', this is the SceneId
