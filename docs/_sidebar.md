@@ -2,7 +2,9 @@
 
   * [Overview](/)
   * [Tutorial](tutorial.md)
-  * [Download](CHANGELOG.md)
+  * Downloads
+    * [Unity Package](unityPackage.md)
+    * [Scene Preparation](scenePrepration.md)
 
 * Guides
 

@@ -1,0 +1,110 @@
+#!/bin/bash
+
+FORGEBUILD="`dirname \"$0\"`" # Relative
+export FORGEBUILD="`( cd \"$FORGEBUILD\" && pwd )`" # Absolutized and normalized
+pushd "${FORGEBUILD}"
+echo ""
+
+ForgeHost="https://developer.api.autodesk.com"
+ARKitHost="https://developer-api.autodesk.io"
+#ARKitHost="http://localhost:${PORT}"
+
+bucket="${USER}${FORGE_CLIENT_ID}"
+bucket=`echo "$bucket" | tr '[:upper:]' '[:lower:]'`
+
+wrap_arg="-w 0"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	wrap_arg=""
+fi
+
+
+#    tools
+function bucketName () { local key=$1; chk=$(echo $key | grep -E "^[-_.a-z0-9]{3,128}$"); echo $chk; }
+function xbase64encode () { local id64=$(echo -ne $1 | base64 $wrap_arg); echo $id64; }
+function xbase64safeencode () { local id64=$(echo -ne $1 | base64  $wrap_arg | tr -d '=' | tr '+/' '-_'); echo $id64; }
+function xbase64decode () { local id=$(echo -ne $1 | base64 $wrap_arg --decode); echo $id; }
+function xbase64safedecode () { local id=$(echo -ne $1 | tr '-_' '+/' | base64 $wrap_arg --decode); echo $id; }
+function join () { local d=$1; shift; echo -n "$1"; shift; printf -v REPLY "%s" "${@/#/$d}"; echo "${REPLY}"; }
+function join1 () { local IFS="$1"; shift; echo "$*"; }
+function split () { IFS=' ' read -r -a array <<< $1; echo "${array[$2]}"; }
+
+
+#    2legged
+declare -a SCOPE=( \
+	data:read \
+	data:write \
+	data:create \
+	data:search \
+	bucket:create \
+	bucket:read \
+	bucket:update \
+	bucket:delete \
+);
+declare -a data=( \
+	client_id=$FORGE_CLIENT_ID \
+	client_secret=$FORGE_CLIENT_SECRET \
+	grant_type=client_credentials \
+	scope=$(join '%20' ${SCOPE[@]}) \
+);
+credentials=$(join '&' ${data[@]})
+response=$(curl \
+	-k -s \
+	--header "Content-Type: application/x-www-form-urlencoded" \
+	--data "${credentials}" \
+	${ForgeHost}/authentication/v1/authenticate \
+)
+bearer=$(echo $response | jq --raw-output '.access_token')
+bearer="Bearer ${bearer}"
+echo "Your access token is:"
+echo "${bearer}"
+echo ""
+
+
+echo "Your bucket ${bucket}"
+
+#    bucket
+response=$(curl -H "Authorization: ${bearer}" -X GET ${ForgeHost}/oss/v2/buckets/${bucket}/details -k -s)
+reason=$(echo $response | jq --raw-output .reason)
+if [ "$reason" == "Bucket not found" ]; then
+	echo "bucket ${bucket} does not exist!"
+	exit
+fi
+echo ""
+
+
+#	list resources
+response=$(curl -H "Authorization: ${bearer}" -X GET ${ForgeHost}/oss/v2/buckets/${bucket}/objects -k -s)
+#echo $response | jq -r '.items[]'
+for row in $(echo "${response}" | jq -r '.items[] | @base64'); do
+	_jq() {
+		echo ${row} | base64 --decode | jq -r ${1}
+	}
+	result=$(_jq '.objectId')
+	echo $result
+	urn=$(xbase64safeencode $result)
+	echo $urn
+	echo ""
+
+	#   get manifest
+	echo "GET manifest"
+	manifest=$(curl -X GET \
+	    -H "Authorization: ${bearer}" \
+	    -H "Content-Type: application/json" \
+	    "${ARKitHost}/modelderivative/v2/arkit/${urn}/manifest" \
+	    -k -s)
+
+	echo $manifest | jq . > "${urn}.json"
+	echo "saved in ${urn}.json"
+	#echo $manifest | jq .
+	echo ""
+done
+echo ""
+
+
+#   For other elements, you need to read the instance tree!
+# Done
+
+echo ""
+echo ""
+popd
+echo ""

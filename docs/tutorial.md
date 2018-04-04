@@ -3,10 +3,11 @@
 
 ## Before you start
 
-- Register as a Forge developer, if you’re not already! You’ll need to have a good understanding of how to authenticate, and how to use the data management and model derivative APIs.
-- Install the latest version of Unity 2017, and set up a new project to work on your device of choice.
-- Download the code example that demonstrates how to prepare your Unity scene. You can find this in the **Downloads** area to the left of this page: click **Unity scene preparation sample code**, and download the **test-2legged** file. This bash script shows a minimal sequence of calls to the Forge and developer-api.autodesk.io REST APIs that will get you through Step 1 and Step 2 below.
-- If you have problems using the steps on this page to get up and running, please let us know in the User Forums on this site!
+!> Register as a Forge developer, if you’re not already! You’ll need to have a good understanding of how to authenticate, and how to use the data management and model derivative APIs.
+
+!> Install the latest version of Unity 2017, and set up a new project to work on your device of choice.
+
+!> Download the code example that demonstrates how to prepare your Unity scene. You can find this in the **Downloads** section, and then click [**Scene Preparation**](scenePrepration.md), download the **test-2legged** file. This bash script shows a minimal sequence of calls to the Forge and developer-api.autodesk.io REST APIs that will get you through Step 1 and Step 2 below.
 
 
 ## Step 1. Use Forge to prepare an SVF
@@ -46,7 +47,7 @@ For 3-legged authentication, call the PUT /data/v1/projects/{project_id}/version
 
     + **urn**: The objectId of the data file you want to use, as given to you by the Forge data management service.
     + **scene_id**:  A descriptive name for your scene that you can decide for yourself.
-    + project_id: and version_id For 3-legged authentication to user data files, you will need these ID values. They are also given to you by the Forge data management service.  
+    + **project_id** and **version_id**: For 3-legged authentication to user data files, you will need these ID values. They are also given to you by the Forge data management service.  
     
     You need to send to this endpoint a JSON payload that contains a prj object with the following fields:  
 
@@ -129,7 +130,7 @@ For details on all the endpoints provided by the developer-api.autodesk.io serve
 
 You'll need to add to your Unity project a package of new assets that communicate with the developer-api.autodesk.io to bring into Unity the scene assets you created for your design data.
 
-1. Click the **Downloads** area to the left, then **Unity data pipeline project assets**. Download the *.unitypackage* archive to your computer.
+1. Check the **Downloads** area to the left, then [**Unity Package**](unityPackage.md). Download the *.unitypackage* archive to your computer.
 2. Choose **Assets > Import Package > Custom Package** from the main menu bar of the Unity editor.
 3. Browse to and select the *.unitypackage* file you downloaded, and click **Open**.
 4. You'll be shown a preview of all the assets in the package. Click **Import** to bring them all into your project.
@@ -262,5 +263,3 @@ Select **Forge > Build Prefab** from the main menu bar in the Unity editor.
 - <p>The user experience of your Unity app on your target platform is totally up to you. The data pipeline offered by the toolkit, and the package of assets that load your scene in from the developer-api.autodesk.io server, intentionally try to avoid constraining the way your app behaves at runtime. So, you'll want to use the Unity editor to add things like user interactions, camera controls, etc.</p>
 - <p>The ForgeLoader script component is set up by default to load all the parts of your Forge scene into Unity. If you dig into the code in the Assets/Forge folder, you can see how it calls the services offered by developer-api.autodesk.io to iterate over all the geometry and materials in your scene and bring each into the game world. You can customize this code if you want to change something about this behavior, such as loading only a sub-set of viewable geometry in a scene, or swapping the default materials at runtime for new materials of your own design.</p>
 - <p>The developer-api.autodesk.io services are not actually specific to Unity -- they simply provide scene data and geometry in easily parsable JSON formats. Once you understand how to use the server's REST APIs to process and retrieve your scene data, you could get your Forge geometry into a different game engine or application by re-using the same approach used by the scripts in this toolkit's Unity package.</p>
-
-- <p>Let us know about your experience in the User Forums! You'll find them in the **Resources** list on the left of this page.</p>

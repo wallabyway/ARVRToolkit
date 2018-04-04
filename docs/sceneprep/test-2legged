@@ -1,0 +1,249 @@
+#!/bin/bash
+
+FORGEBUILD="`dirname \"$0\"`" # Relative
+export FORGEBUILD="`( cd \"$FORGEBUILD\" && pwd )`" # Absolutized and normalized
+pushd "${FORGEBUILD}"
+echo ""
+
+ForgeHost="https://developer.api.autodesk.com"
+#ARKitHost="http://localhost:${PORT}"
+ARKitHost="https://developer-api.autodesk.io"
+
+bucket="${USER}${FORGE_CLIENT_ID}"
+bucket=`echo "$bucket" | tr '[:upper:]' '[:lower:]'`
+#fullpath="/Users/cyrille/Projects/_samples/wrench.f3d"
+fullpath="$1"
+
+filename=$(basename "${fullpath}")
+#urn=
+scene_id=scene
+#bearer=
+
+wrap_arg="-w 0"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	wrap_arg=""
+fi
+
+
+#    tools
+function bucketName () { local key=$1; chk=$(echo $key | grep -E "^[-_.a-z0-9]{3,128}$"); echo $chk; }
+function xbase64encode () { local id64=$(echo -ne $1 | base64 $wrap_arg); echo $id64; }
+function xbase64safeencode () { local id64=$(echo -ne $1 | base64  $wrap_arg | tr -d '=' | tr '+/' '-_'); echo $id64; }
+function xbase64decode () { local id=$(echo -ne $1 | base64 $wrap_arg --decode); echo $id; }
+function xbase64safedecode () { local id=$(echo -ne $1 | tr '-_' '+/' | base64 $wrap_arg --decode); echo $id; }
+function join () { local d=$1; shift; echo -n "$1"; shift; printf -v REPLY "%s" "${@/#/$d}"; echo "${REPLY}"; }
+function join1 () { local IFS="$1"; shift; echo "$*"; }
+function split () { IFS=' ' read -r -a array <<< $1; echo "${array[$2]}"; }
+
+
+#    2legged
+declare -a SCOPE=( \
+	data:read \
+	data:write \
+	data:create \
+	data:search \
+	bucket:create \
+	bucket:read \
+	bucket:update \
+	bucket:delete \
+);
+declare -a data=( \
+	client_id=$FORGE_CLIENT_ID \
+	client_secret=$FORGE_CLIENT_SECRET \
+	grant_type=client_credentials \
+	scope=$(join '%20' ${SCOPE[@]}) \
+);
+credentials=$(join '&' ${data[@]})
+response=$(curl \
+	-k -s \
+	--header "Content-Type: application/x-www-form-urlencoded" \
+	--data "${credentials}" \
+	${ForgeHost}/authentication/v1/authenticate \
+)
+bearer=$(echo $response | jq --raw-output '.access_token')
+bearer="Bearer ${bearer}"
+echo "Your access token is:"
+echo "${bearer}"
+echo ""
+
+
+#    bucket
+response=$(curl -H "Authorization: ${bearer}" -X GET ${ForgeHost}/oss/v2/buckets/${bucket}/details -k -s)
+reason=$(echo $response | jq --raw-output .reason)
+if [ "$reason" == "Bucket not found" ]; then
+	response=$(curl --header "Content-Type: application/json" --header "Authorization: ${bearer}" \
+		--data "{\"bucketKey\":\"${bucket}\",\"policyKey\":\"persistent\"}" ${ForgeHost}/oss/v2/buckets -k -s)
+	echo "bucket ${bucket} created"
+else
+	key=$(echo $response | jq --raw-output .bucketKey)
+	echo "bucket ${key} already exist"
+fi
+echo ""
+
+
+#    upload
+echo -n "Uploading file ${filename} ..."
+filenameUri=`echo "${filename}" | sed 's/ /+/g'`
+response=$(curl --header "Authorization: ${bearer}" -H "Content-Type:application/octet-stream" \
+	--upload-file "${fullpath}" -X PUT "${ForgeHost}/oss/v2/buckets/${bucket}/objects/${filenameUri}" -k -s)
+id=$(echo $response | jq --raw-output .objectId)
+echo " (done)"
+echo "File ID: $id"
+echo ""
+
+#    translate
+urn=$(xbase64encode $id)
+job='{
+	"input": {
+	  "urn": "'${urn}'"
+	},
+	"output": {
+	  "formats": [
+	    {
+	      "type": "svf",
+	      "views": [
+	        "2d",
+	        "3d"
+	      ]
+	    }
+	  ]
+	}
+}'
+response=$(curl -H "Content-Type: application/json" --header  "Authorization: ${bearer}" \
+	-X POST ${ForgeHost}/modelderivative/v2/designdata/job -k -s \
+	-d "${job}")
+echo "Translation requested"
+echo ""
+
+#   progress
+id64=$(xbase64safeencode $id)
+progress="pending"
+while [ "${progress}" != "complete" ]; do
+	sleep 5
+	response=$(curl -H "Content-Type: application/json" -H "Authorization: ${bearer}" \
+    	-X GET ${ForgeHost}/modelderivative/v2/designdata/${id64}/manifest -k -s)
+    status=$(echo $response | jq --raw-output .status)
+    progress=$(echo $response | jq --raw-output .progress)
+    echo "Request: ${status} (${progress})"
+done
+
+
+#   result
+echo "Your URN is:"
+echo "${urn}"
+echo ""
+
+
+#   check service
+echo -n "Check service Health - "
+response=$(curl -X GET \
+  "${ARKitHost}/arkit/v1/health" \
+  -k -s)
+echo $response
+echo ""
+
+
+#   upload a scene definition
+echo -n "Uploading a scene definition ..."
+payload=" \
+{ \
+	\"prj\": { \
+		\"bucketKey\": \"${bucket}\", \
+		\"objectId\": \"${id}\", \
+        \"urn\": \"${urn}\" \
+	} \
+}"
+response=$(curl -X PUT \
+  -H "Authorization: ${bearer}" \
+  -H "Content-Type: application/json" \
+  "${ARKitHost}/arkit/v1/${urn}/scenes/${scene_id}" \
+  -d "${payload}" \
+  -k -s)
+echo " (done)"
+echo ""
+
+
+#    get a scene definition
+echo "GET the scene definition"
+response=$(curl -X GET \
+  -H "Authorization: ${bearer}" \
+  "${ARKitHost}/arkit/v1/${urn}/scenes/${scene_id}" \
+  -k -s)
+echo $response | jq .
+echo ""
+
+
+#   post a scene job
+echo "POST Scene creation job"
+payload=" \
+{ \
+	\"input\": { \
+        \"urn\": \"${urn}\" \
+	}, \
+	\"output\": { \
+		\"formats\": [ \
+			{ \
+				\"type\": \"arkit\", \
+				\"scene\": \"${scene_id}\" \
+			} \
+		] \
+	} \
+}"
+response=$(curl -X POST \
+  -H "Authorization: ${bearer}" \
+  -H "Content-Type: application/json" \
+  "${ARKitHost}/modelderivative/v2/arkit/job" \
+  -d "${payload}" \
+  -k -s)
+echo $response | jq .
+echo ""
+
+
+#   get scene creation job progress
+echo "GET Scene creation job progress"
+progress="pending"
+while [ "${progress}" != "complete" ]; do
+	sleep 5
+	response=$(curl -X GET \
+        -H "Authorization: ${bearer}" \
+        -H "Content-Type: application/json" \
+        "${ARKitHost}/modelderivative/v2/arkit/${urn}/manifest" \
+        -k -s)
+    status=$(echo $response | jq --raw-output .derivatives[-1].status)
+    progress=$(echo $response | jq --raw-output .derivatives[-1].progress)
+    echo "Request: ${status} (${progress})"
+done
+echo ""
+
+
+#   get manifest
+echo "GET manifest"
+response=$(curl -X GET \
+    -H "Authorization: ${bearer}" \
+    -H "Content-Type: application/json" \
+    "${ARKitHost}/modelderivative/v2/arkit/${urn}/manifest" \
+    -k -s)
+echo $response | jq . > manifest.json
+echo "saved in manifest.json"
+echo ""
+
+
+# FROM HERE, we get the scene results
+echo "GET scene instance tree"
+response=$(curl -X GET \
+    -H "Authorization: ${bearer}" \
+    -H "Content-Type: application/json" \
+    "${ARKitHost}/modelderivative/v2/arkit/${urn}/scenes/${scene_id}" \
+    -k -s)
+echo $response | jq . > "${scene_id}_out.json"
+echo "saved in ${scene_id}_out.json"
+echo ""
+
+
+#   For other elements, you need to read the instance tree!
+# Done
+
+echo ""
+echo ""
+popd
+echo ""

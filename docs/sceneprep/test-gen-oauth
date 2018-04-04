@@ -1,0 +1,49 @@
+#!/bin/bash
+
+FORGEBUILD="`dirname \"$0\"`" # Relative
+export FORGEBUILD="`( cd \"$FORGEBUILD\" && pwd )`" # Absolutized and normalized
+pushd "${FORGEBUILD}"
+echo ""
+
+ForgeHost="https://developer.api.autodesk.com"
+
+
+#    tools
+function join () { local d=$1; shift; echo -n "$1"; shift; printf -v REPLY "%s" "${@/#/$d}"; echo "${REPLY}"; }
+function join1 () { local IFS="$1"; shift; echo "$*"; }
+function split () { IFS=' ' read -r -a array <<< $1; echo "${array[$2]}"; }
+
+
+#    2legged
+declare -a SCOPE=( \
+	data:read \
+	data:write \
+	data:create \
+	data:search \
+	bucket:create \
+	bucket:read \
+	bucket:update \
+	bucket:delete \
+);
+declare -a data=( \
+	client_id=$FORGE_CLIENT_ID \
+	client_secret=$FORGE_CLIENT_SECRET \
+	grant_type=client_credentials \
+	scope=$(join '%20' ${SCOPE[@]}) \
+);
+credentials=$(join '&' ${data[@]})
+response=$(curl \
+	-k -s \
+	--header "Content-Type: application/x-www-form-urlencoded" \
+	--data "${credentials}" \
+	${ForgeHost}/authentication/v1/authenticate \
+)
+bearer=$(echo $response | jq --raw-output '.access_token')
+bearer="Bearer ${bearer}"
+echo "Your access token is:"
+echo "${bearer}"
+echo ""
+
+
+popd
+echo ""
