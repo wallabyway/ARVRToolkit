@@ -12,8 +12,17 @@ This sample is a simple HoloLens demo using [MRLabs](https://github.com/Microsof
 2. Import the [Forge Toolkit package](unityPackage.md) 
 3. Import the [MRLabs package](https://github.com/wallabyway/ARVRToolkit/blob/master/unity-src/extra-samples/rcdb-HoloLens/MRLabs.unitypackage?raw=true)
 4. Import the [HoloLens RCDB sample code](https://github.com/wallabyway/ARVRToolkit/blob/master/unity-src/extra-samples/rcdb-HoloLens/rcdb-Example.unitypackage?raw=true)
+   (ignore the texture fix dialog, and do not fix them)
 5. Load the 'Assets/Forge Samples/Hololens-RCDB' scene in the editor
-6. In the Player options, add the FORGE_HUX preprocessor symbol
+6.	From the menu, Select HoloToolkit->Configure->Apply HoloLens Project Settings and Apply All (say yes to reload)
+7.	From the menu, Select HoloToolkit->Configure->Apply HoloLens Capability Settings and Select All of them
+8.	In the Player options, add the FORGE_HUX preprocessor symbol
+   (note the Unity Editor has a bug which can dismiss your change if you do not click in another edit box)
+9.	Open, Edit and Save the Forge Samples/Scripts/Hololens_RCDB.cs file
+   (make a little change like a new line at the end, this is to force recompiling the file with the FORGE_HUX flag)
+   Then return in the Unity Editor and wait for the script to be recompiled
+10.	From the menu, Select File->Build Settings… Select ‘Add Open Scene’
+
 
 ### Usage
 
