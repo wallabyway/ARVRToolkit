@@ -7,12 +7,21 @@ This sample is a simple HoloLens demo using [MRLabs](https://github.com/Microsof
 
 ### Setup
 
-1. Create a new Unity project. You need Unity 2017.1.2f1.
-2. Import the Forge Toolkit package (Note you need the version for Unity 2017.1.2f1 which is the version supported by MRLabs)
-3. Import the [MRLabs package](MRLabs.unitypackage)
-4. Import the [HoloLens RCDB sample code](rcdb-Example.unitypackage)
-5. Load the 'Assets/Forge Samples/Hololens-RCDB' scene in the editor
-6. In the Player options, add the FORGE_HUX preprocessor symbol
+- Get the `ARVRToolkit.unitypackage`
+  - You can download the `ARVRToolkit.unitypackage` from the [forgetoolkit web site](http://forgetoolkit.com/)
+  - Alternatively you can create a `ARVRToolkit.unitypackage` from the sources in this repository: open the folder `ARVRToolkit\unity-src\ARVRToolkit` in **Unity 2017.3.1f1**, then export package with all assets in the project (for ex) to `ARVRToolkit/unity-src/ARVRToolkit/ARVRToolkit.unitypackage`
+- Create a new project in **Unity 2017.1.2f1**. The project must use **Unity 2017.1.2f1** because of its dependency to the [Microsoft MRDesignLabs unitypackage](https://github.com/Microsoft/MRDesignLabs_Unity)
+- Go to `Edit > project Settings > Player`. Then in the inspector: `Other settings > Scripting Define Symbols`, add `FORGE_HUX`
+- Import `ARVRToolkit/unity-src/ARVRToolkit/ARVRToolkit.unitypackage`
+- Import `ARVRToolkit/unity-src/extra-samples/rcdb-HoloLens/MRLabs.unitypackage`, it's a copy of the [Microsoft MRDesignLabs unitypackage](https://github.com/Microsoft/MRDesignLabs_Unity)
+  - You will be prompted about `Input Axis Missing` warning
+  - ![](img/input-axis-missing.png)
+  - Download the `InputManager.asset` and overwrite the existing file in the `ProjectSettings` folder with this one
+- Import `ARVRToolkit/unity-src/extra-samples/rcdb-HoloLens/rcdb-Example.unitypackage`
+- In Unity, open `Assets/Forge Samples/Hololens-RCDB`, press play
+- Go to `File > Build Settings`, make the changes to match this screenshot
+  - ![](img/build-settings.png)
+  - click Build
 
 ### Usage
 
