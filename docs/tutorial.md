@@ -47,7 +47,7 @@ For 3-legged authentication, call the PUT /data/v1/projects/{project_id}/version
 
     + **urn**: The objectId of the data file you want to use, as given to you by the Forge data management service.
     + **scene_id**:  A descriptive name for your scene that you can decide for yourself.
-    + **project_id** and **version_id**: For 3-legged authentication to user data files, you will need these ID values. They are also given to you by the Forge data management service.  
+    + **project_id** and **version_id**: For 3-legged authentication to user data files, you will need these ID values. They are also given to you by the Forge data management service.  NOTE: Must *NOT* be base64 encoded. 
     
     You need to send to this endpoint a JSON payload that contains a prj object with the following fields:  
 
@@ -72,7 +72,27 @@ For 3-legged authentication, call the PUT /data/v1/projects/{project_id}/version
     -d "${payload}" \
     -k -s)
     ```
-  
+
+
+    and for 3-legged example:
+    ```
+    payload=" \
+    { \
+        \"prj\": { \
+            \"bucketKey\": \"${bucket}\", \
+            \"objectId\": \"${id}\", \
+            \"projectId\": \"${project_id}\" \
+            \"versionId\": \"${version_id}\" \
+        } \
+    }"
+    response=$(curl -X PUT \
+    -H "Authorization: ${bearer}" \
+    -H "Content-Type: application/json" \
+    "https://developer-api.autodesk.io/arkit/v1/${urn}/scenes/my_scene_id" \
+    -d "${payload}" \
+    -k -s)
+    ```
+    
 - With the scene definition in place, you can start a scene processing job. This tells the developer-api.autodesk.io server to get the SVF data prepared by the model derivative service, and to process its viewable data into scene assets.  
 Call the **POST /modelderivative/v2/arkit/job** endpoint.  
 You will need to send it a JSON payload that contains both the URL-safe Base64-encoded URN and the scene ID you set up above.
@@ -100,7 +120,8 @@ You will need to send it a JSON payload that contains both the URL-safe Base64-e
     -d "${payload}" \
     -k -s)
     ```
- 
+
+Refer to [nodejs-sample-code](https://github.com/Autodesk-Forge/forge-rcdb.nodejs/blob/36f22581bebcaff6438b5e75178755960b91a4a3/src/client/viewer.components/Viewer.Extensions.Dynamic/Viewing.Extension.ARToolkitController/ARVRToolkit.API.js#L149-L169)
 
 - The developer-api.autodesk.io server starts its scene processing job in response to your request, and continues processing asynchronously. To know when the processing is done and your scene assets are ready to use, you'll need to try to retrieve a manifest. If you're familiar with the Forge model derivative API,you'll recognize this pattern.  
 Call the **GET /modelderivative/v2/arkit/{urn}/manifest** endpoint.  
@@ -124,7 +145,7 @@ This call returns a JSON object that contains a derivatives array. When all of t
 
 For details on all the endpoints provided by the developer-api.autodesk.io server, see:
 
-[https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.0.0](https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.0.0)
+[https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.2.0](https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.2.0)
 
 ## Step 3. Install the Unity package
 
