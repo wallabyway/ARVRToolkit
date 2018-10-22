@@ -9,6 +9,7 @@
 * Guides
 
   * [Hello World](helloworld.md)
+  * [OculusGo example](oculusgo.md)
   * [Hololens example](hololens.md)
   * [Filter by String](queryString.md)
   * [Spatial Filter](queryBox.md)
