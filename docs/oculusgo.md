@@ -1,26 +1,33 @@
 # Oculus Go
 
 #### Installation
+1. Complete the 'helloworld' tutorial and use this [example Revit](https://github.com/wallabyway/ARVRToolkit/tree/master/docs/res/Apartment-Furnished-Barcelona.rvt) file
 
-1. Download the latest [Unity Package](unityPackage.md)
-2. Open the sample project in Unity at Assets/Forge Samples/LoadAtStartup
-3. In a browser, go to [ToolkitService](https://forge-rcdb.autodesk.io/configurator?id=5a2a07e6d72f007fb27b7e0c), login with your Autodesk ID and select an item of design file, for example, 'House Design.rvt'
-4. Click 'VR' button, and then create a new Scene called '`helloworld-house`', this is the SceneId
-    <p align="center">
-    <img src="res/createScene.png" alt="Forge ARVR-Toolkit" />
-    </p>
-5. Copy the `Urn` and `token` under "Manifest" and Token tabs
-6. In Unity, select '`startup Script`' and go to Inspector window, paste in `URN`, `BEARER` (token) and `SCENEID`
-    <p align="center">
-    <img src="res/unity_component_settings.png" alt="Forge ARVR-Toolkit" />
-    </p>
-7. Now press the Unity '`play`' button
+#### Build the teleporter
+2. Add 'VR Simple Transport' from the Asset store
+3. Add 'Oculus Unity Integration' from the Asset store
+4. Configure the teleporter and click 'play' to test (WASD keys to move)
 
-You should now see the following:
+Youtube Video:
+[![](https://user-images.githubusercontent.com/440241/47318127-1aa27a80-d600-11e8-8a59-9e7e97e5b97c.jpg)](https://youtu.be/i5QKh_fzJag)
 
-<p align="center">
-  <img src="res/unity_game.gif" alt="Forge ARVR-Toolkit" />
-</p>
 
-You can find the original source code for the Unity project under the 'hello world' folder in this github repo.
+#### Deploy to Oculus Go device
+5. Download the Android SDK and install
+6. Configure your Oculus Go, into Developer mode
+7. Configure Unity - set Android v5.0 development and Oculus (see video)
+
+
+Youtube Video:
+[![](https://user-images.githubusercontent.com/440241/47318021-c8615980-d5ff-11e8-805e-9b3d00675031.jpg)](https://youtu.be/8OmLrbB9Szo)
+
+8. Plug in your Oculus-Go via USB
+9. run "./adb devices" and check the device appears
+10. In Unity, click 'Build and Run' to deploy
+
+Youtube Video:
+[![](https://user-images.githubusercontent.com/440241/47318273-81c02f00-d600-11e8-8903-cc1e72f4b571.jpg)](https://youtu.be/zIqxuxalTYc)
+
+
+You can find the final APK and source code, in the repo [github/wallabyway/Forge-OculusGo-Tutorial](https://www.github.com/wallabyway/Forge-OculusGo-Tutorial)
 
