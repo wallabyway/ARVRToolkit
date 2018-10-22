@@ -145,7 +145,7 @@ This call returns a JSON object that contains a derivatives array. When all of t
 
 For details on all the endpoints provided by the developer-api.autodesk.io server, see:
 
-[https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.2.0](https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.2.0)
+[https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.2.1](https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.2.1)
 
 ## Step 3. Install the Unity package
 

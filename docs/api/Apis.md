@@ -4,7 +4,7 @@ Forge ARKit APIs
 
 For details on all the endpoints provided by the server, see:
 
-[SwaggerHub.com / forge-arkit / v1.2.0](https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.2.0)
+[SwaggerHub.com / forge-arkit / v1.2.1](https://app.swaggerhub.com/apis/cyrillef/forge-ar_kit/1.2.1)
 
 ___
 
