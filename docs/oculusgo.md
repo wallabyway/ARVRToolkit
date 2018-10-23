@@ -26,7 +26,7 @@ Youtube Video:
 10. In Unity, click 'Build and Run' to deploy
 
 Youtube Video:
-[![](https://user-images.githubusercontent.com/440241/47318273-81c02f00-d600-11e8-8903-cc1e72f4b571.jpg)](https://youtu.be/zIqxuxalTYc)
+[![](https://user-images.githubusercontent.com/440241/47376973-e20aab80-d6a8-11e8-9c93-b95a6628e818.gif)](https://youtu.be/zIqxuxalTYc)
 
 
 You can find the final APK and source code, in the repo [github/wallabyway/Forge-OculusGo-Tutorial](https://www.github.com/wallabyway/Forge-OculusGo-Tutorial)
