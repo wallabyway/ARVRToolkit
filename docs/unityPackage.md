@@ -4,7 +4,7 @@ The files in this package make a Unity app capable of loading design data from F
 
 To understand how to use these files as part of the Forge to Unity data pipeline, click [**Hello World**](helloworld.md).
 
-* Download [ForgeARKit-update-4-minimal.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-4-minimal.unitypackage.unitypackage)
+* Download [ForgeARKit-update-4-minimal.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-4-minimal.unitypackage)
 * or [ForgeARKit-update-3-2017.1.2f1.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-3-2017.1.2f1.unitypackage) for
   [MRLabs](https://github.com/Microsoft/MRDesignLabs_Unity) support
 
