@@ -8,6 +8,9 @@ To understand how to use these files as part of the Forge to Unity data pipeline
 * or [ForgeARKit-update-3-2017.1.2f1.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-3-2017.1.2f1.unitypackage) for
   [MRLabs](https://github.com/Microsoft/MRDesignLabs_Unity) support
 
+!> Make sure to switch to .NET 4.0 runtime, like so... `File > Player Settings > Other Options > Configuration` Select: `Scripting Runtime Version*`
+
+![net40runtime](https://user-images.githubusercontent.com/440241/48244190-490eac80-e399-11e8-809a-551efe2e01e6.png)
 
 ---
 # Update 5 (Nov5)
