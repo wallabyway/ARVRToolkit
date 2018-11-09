@@ -1,14 +1,12 @@
 * Getting Started
 
   * [Overview](/)
-  * [Tutorial](tutorial.md)
-  * Downloads
-    * [Unity Package](unityPackage.md)
-    * [Scene Preparation](scenePrepration.md)
+  * [Tutorial](helloworld.md)
+  * [Downloads](unityPackage.md)
+  * [Showcase](showcase.md)
 
 * Guides
 
-  * [Hello World](helloworld.md)
   * [OculusGo example](oculusgo.md)
   * [Hololens example](hololens.md)
   * [Filter by String](queryString.md)
@@ -17,6 +15,6 @@
 * API Reference
 
   * [APIs](api/Apis.md)
-
-* Component Library
-  * [Showcase](showcase.md)
+  * [Server]
+    * [Introduction](tutorial.md)
+    * [Scene Preparation](scenePrepration.md)
