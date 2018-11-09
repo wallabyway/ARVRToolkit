@@ -1,7 +1,21 @@
-# Oculus Go
+# Deploy to Oculus Go
 
-#### Installation
-1. Complete the 'helloworld' tutorial and use this [example Revit](https://github.com/wallabyway/ARVRToolkit/tree/master/docs/res/Apartment-Furnished-Barcelona.rvt) file
+### Introduction
+We will build a simple Revit walkthrough and deploy it to an Oculus Go.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/440241/48243469-6c375d00-e395-11e8-9842-883e5258b8c6.jpg" alt="OculusGo" />
+    <img src="https://user-images.githubusercontent.com/440241/47376973-e20aab80-d6a8-11e8-9c93-b95a6628e818.gif" alt="OculusGo" height="168px"/>
+</p>
+
+
+### Steps
+
+1. Complete the '[helloworld](helloworld.md)' tutorial and choose this [Rac.rvt](https://wallabyway.github.io/toolkitServerv2/index.html) URN thumbnail...
+
+> <p align="center">
+    <img src="https://user-images.githubusercontent.com/440241/48242526-786ceb80-e390-11e8-95a0-11022d845250.jpg" alt="Forge ARVR-Toolkit Samples" />
+    </p>
 
 #### Build the teleporter
 2. Add 'VR Simple Transport' from the Asset store
@@ -26,7 +40,7 @@ Youtube Video:
 10. In Unity, click 'Build and Run' to deploy
 
 Youtube Video:
-[![](https://user-images.githubusercontent.com/440241/47376973-e20aab80-d6a8-11e8-9c93-b95a6628e818.gif)](https://youtu.be/zIqxuxalTYc)
+
 
 
 You can find the final APK and source code, in the repo [github/wallabyway/Forge-OculusGo-Tutorial](https://www.github.com/wallabyway/Forge-OculusGo-Tutorial)
