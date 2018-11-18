@@ -17,12 +17,12 @@ Website: [ForgeToolkit.com](http://forgetoolkit.com)
 ![ForgeToolkit Overview](docs/artoolkit.gif)
 
 
-### Disclaimer
+> Disclaimer
 
 This is a beta product and not officially supported by Autodesk.
 
 
-### License
+> License
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). 
 Please see the [LICENSE](LICENSE) file for full details.
