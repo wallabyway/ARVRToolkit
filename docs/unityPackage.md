@@ -17,7 +17,7 @@ To understand how to use these files as part of the Forge to Unity data pipeline
 ![net40runtime](https://user-images.githubusercontent.com/440241/48244190-490eac80-e399-11e8-809a-551efe2e01e6.png)
 
 ---
-# Update 6 (Nov5)
+# Update 6 (Nov20)
 
 #### Fix: Auth 500 error when retrieving mesh
 
