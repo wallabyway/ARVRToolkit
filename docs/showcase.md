@@ -9,7 +9,8 @@
  - [Github: Talk-Samples SRC](https://github.com/wallabyway/forgetoolkitsamples)
  - [slideDeck.PDF](https://github.com/wallabyway/forgetoolkitsamples/files/2593259/SD225860-HitGroundRunning-UnityandForge.pdf)
 
-- [BES195523 - Interact with Your Inventor and Fusion 360 3D Models on the HTC Vive and Microsoft HoloLens](https://autodeskuniversity.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=195523)
+- BES195523 - [YOUTUBE](https://vimeo.com/243702940) / [INFO](https://autodeskuniversity.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=195523) Interact with Your Inventor and Fusion 360 3D Models on the HTC Vive and Microsoft HoloLens 
+
 [![Youtube Demo](https://github.com/cyrillef/ForgeArVr/raw/master/HoloForge.jpg)](https://www.youtube.com/watch?v=3_zwerE90eo&feature=youtu.be&t=3m42s)
 
 
