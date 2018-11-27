@@ -8,7 +8,7 @@ The files in this package make a Unity app capable of loading design data from F
 
 To understand how to use these files as part of the Forge to Unity data pipeline, click [**Hello World**](helloworld.md).
 
-* Download [ForgeARKit-update-5-2018.1.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-5-2018.1.unitypackage)
+* Download [ForgeARKit-update-6-2018.1.unitypackage](https://github.com/wallabyway/ARVRToolkit/files/2602340/ForgeARKit-update-6-2018.1.unitypackage.zip)
 * or [ForgeARKit-update-3-2017.1.2f1.unitypackage](http://forgetoolkit.com/unity/ForgeARKit-update-3-2017.1.2f1.unitypackage) for
   [MRLabs](https://github.com/Microsoft/MRDesignLabs_Unity) support
 
@@ -16,6 +16,10 @@ To understand how to use these files as part of the Forge to Unity data pipeline
 
 ![net40runtime](https://user-images.githubusercontent.com/440241/48244190-490eac80-e399-11e8-809a-551efe2e01e6.png)
 
+---
+# Update 6 (Nov20)
+
+#### Fix: Auth 500 error when retrieving mesh
 
 ---
 # Update 5 (Nov5)
