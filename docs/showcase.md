@@ -3,10 +3,9 @@
 
 
 !> Hit the Ground Running with Unity and Forge 
-
-!> [![Youtube Demo](https://user-images.githubusercontent.com/440241/49186865-9fc53180-f31a-11e8-9b19-3d2e0a51d884.jpg)](https://www.autodesk.com/autodesk-university/forge-content/au_class-urn%3Aadsk.content%3Acontent%3Ab823cba8-85b3-4f48-97ce-96cbb60fc229s)
-
-!> [Video](https://www.autodesk.com/autodesk-university/forge-content/au_class-urn%3Aadsk.content%3Acontent%3Ab823cba8-85b3-4f48-97ce-96cbb60fc229s) /  Github: [ForgeToolkit](https://github.com/wallabyway/forgeToolkit) / [Samples](https://github.com/wallabyway/forgetoolkitsamples)
+!> [![Youtube Demo](https://user-images.githubusercontent.com/440241/49186865-9fc53180-f31a-11e8-9b19-3d2e0a51d884.jpg)](https://www.autodesk.com/autodesk-university/forge-content/au_class-urn%3Aadsk.content%3Acontent%3Ab823cba8-85b3-4f48-97ce-96cbb60fc229)
+!> 
+!> [Video](https://www.autodesk.com/autodesk-university/forge-content/au_class-urn%3Aadsk.content%3Acontent%3Ab823cba8-85b3-4f48-97ce-96cbb60fc229) /  Github: [ForgeToolkit](https://github.com/wallabyway/forgeToolkit) / [Samples](https://github.com/wallabyway/forgetoolkitsamples)
 
 -
 
