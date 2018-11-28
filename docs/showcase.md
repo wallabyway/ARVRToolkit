@@ -1,15 +1,26 @@
 
-#### News from Autodesk AU 2018:
+#### Related Classes from Autodesk AU 2018:
 
-- [Autodesk+Unity DCC workflows](https://unity3d.com/partners/autodesk)
+
+> Hit the Ground Running with Unity and Forge 
+>[![Youtube Demo](https://user-images.githubusercontent.com/440241/49186865-9fc53180-f31a-11e8-9b19-3d2e0a51d884.jpg)](https://www.autodesk.com/autodesk-university/forge-content/au_class-urn%3Aadsk.content%3Acontent%3Ab823cba8-85b3-4f48-97ce-96cbb60fc229s)
+
+> [Video](https://www.autodesk.com/autodesk-university/forge-content/au_class-urn%3Aadsk.content%3Acontent%3Ab823cba8-85b3-4f48-97ce-96cbb60fc229s) /  Github: [ForgeToolkit](https://github.com/wallabyway/forgeToolkit) / [Samples](https://github.com/wallabyway/forgetoolkitsamples)
+
+-
+
+> Interact with Your Inventor and Fusion 360 3D Models on the HTC Vive and Microsoft HoloLens 
+>[![link](https://flint-prod-au.s3.amazonaws.com/prod/s3fs-public/styles/class_teaser_1x/public/forge_content_file_cache/f5c9e597f27b7ff3ef369575ac07eb52.jpg?itok=PCIKeJxw)](https://www.autodesk.com/autodesk-university/forge-content/au_class-urn%3Aadsk.content%3Acontent%3Aef80523b-79fc-4033-b3a1-8d85e1f0554f)
+> 
+> [Video](https://www.autodesk.com/autodesk-university/forge-content/au_class-urn%3Aadsk.content%3Acontent%3Aef80523b-79fc-4033-b3a1-8d85e1f0554f)
+
+
+--
+
+
+- [Autodesk & Unity DCC workflows](https://unity3d.com/partners/autodesk)
 - [Ustream: Beyond Preconstruction: VR and BIM 360 Empowering Collaboration in a Global Company](https://www.ustream.tv/recorded/118281826)
 
-- [SD225860 - Hit the Ground Running with Unity and Forge](https://autodeskuniversity.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=225860&tclass=popup)
- - [Github: ForgeToolkit SRC](https://github.com/wallabyway/forgeToolkit)
- - [Github: Talk-Samples SRC](https://github.com/wallabyway/forgetoolkitsamples)
- - [slideDeck.PDF](https://github.com/wallabyway/forgetoolkitsamples/files/2593259/SD225860-HitGroundRunning-UnityandForge.pdf)
-
-- BES195523 - [YOUTUBE](https://vimeo.com/243702940) / [INFO](https://autodeskuniversity.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=195523) Interact with Your Inventor and Fusion 360 3D Models on the HTC Vive and Microsoft HoloLens 
 
 [![Youtube Demo](https://github.com/cyrillef/ForgeArVr/raw/master/HoloForge.jpg)](https://www.youtube.com/watch?v=3_zwerE90eo&feature=youtu.be&t=3m42s)
 
